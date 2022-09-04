@@ -1,3 +1,7 @@
+const outcome = document.querySelector('.outcome');
+console.log(outcome);
+
+
 function getComputerChoice () {
     const rps = ['Rock', 'Paper', 'Scissors'];
     let randomIndex = () => {
@@ -40,6 +44,9 @@ let game = () => {
     let loses = 0;
     let draws = 0;
 
+    const message = document.createElement('div');
+    const total = document.createElement('div');
+
     for(let i = 0; i < 5 ; i++) {
         let usersChoice = prompt('Rock, Paper, Scissors?').toLowerCase();
         let computersChoice = getComputerChoice();
@@ -51,12 +58,33 @@ let game = () => {
     console.log(`W${wins}, L${loses}, D${draws}`)
 
     if(wins > loses) {
-        console.log('Congratulations, you beat the computer!')
+        
+        console.log('Congratulations, you beat the computer!');
+        outcome.style.color = "Green";
+        outcome.textContent = "Victory!";
+        message.textContent = 'Congratulations, you beat the computer!';
+        outcome.appendChild(message);
+        total.textContent = `W${wins}, L${loses}, D${draws}`;
+        message.appendChild(total);
+
     } else if(loses > wins) {
-        console.log('Commiserations, you lost to the computer!')
+        console.log('Commiserations, you lost to the computer!');
+        outcome.style.color = "Red";
+        outcome.textContent = "Defeat!";
+        message.textContent = 'Commiserations, you lost to the computer!';
+        outcome.appendChild(message);
+        total.textContent = `W${wins}, L${loses}, D${draws}`;
+        message.appendChild(total);
     } else {
-        console.log("DRAW!")
+        console.log("DRAW!");
+        outcome.style.color = "Blue";
+        outcome.textContent = "Draw!";
+        message.textContent = 'Congratulations and commiserations, you both won and lost!';
+        outcome.appendChild(message);
+        total.textContent = `W${wins}, L${loses}, D${draws}`;
+        message.appendChild(total);
     }
+
 }
 
 game();
